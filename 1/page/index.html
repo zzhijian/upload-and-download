@@ -1,0 +1,116 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>upload and download</title>
+<link rel="stylesheet"  type="text/css" href="/comm/lhgdialog/skins/jtop.css"/>
+<script type="text/javascript" src="/comm/js/jquery.js"></script>
+<script type="text/javascript" src="/comm/lhgdialog/lhgdialog.min.js?skin=mac"></script>
+<script type="text/javascript" src="/comm/lhgdialog/dialog.js"></script>
+<script type="text/javascript" src="/comm/js/mainupload.js"></script>
+<style type="text/css" >
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre, 
+form,fieldset,input,textarea,p,blockquote,th,td { 
+    padding: 0; 
+    margin: 0; 
+    font-family: "微软雅黑";
+    color:#636d76;
+	
+} 
+*{outline:none;}
+a,button,a:active,button:active{
+	outline:none;
+	}
+table { 
+    border-collapse: collapse; 
+    border-spacing: 0; 
+} 
+fieldset,img { 
+    border: 0; 
+} 
+address,caption,cite,code,dfn,em,strong,th,var { 
+    font-weight: normal; 
+    font-style: normal; 
+} 
+ol,ul { 
+    list-style: none; 
+} 
+caption,th { 
+   /** text-align: left; **/
+    margin-left: 8px;
+} 
+h1,h2,h3,h4,h5,h6 { 
+    font-weight: normal; 
+    font-size: 100%; 
+} 
+q:before,q:after { 
+    content:”; 
+} 
+abbr,acronym { 
+    border: 0; 
+}
+a{
+	text-decoration: none;
+	color:#ec6535;
+}
+.btn{
+	 text-align: center; padding:8px 25px; display: inline-block; border-radius: 5px; font-size: 14px;
+	border:none; outline: none; cursor: pointer;
+}
+/*关于颜色定义*/
+.bc-orange{  /*橘色*/
+	background: #ff662f;
+	color:#fff;
+}
+.bc-grey{  /*灰色*/
+	background:#f9f9f9;
+	color:#666;
+	}
+
+.bc-green{    /*绿色*/
+	background: #35cc6d;
+	color:#fff;
+}
+
+.bc-green:hover{opacity: 0.8}
+
+.bc-blue{    /*蓝色*/
+	background-color:#0FBFBF;
+	color:#fff;
+	}
+.bc-blue:hover{background:#0A9898}
+
+.c-orange{  /*橘色*/
+	color:#ff662f;
+}
+body{font-size:14px; font-family:"微软雅黑"; color:#2b2b2b; background:#fcfcfc;}
+.listCon a{padding:0px 2px; color:#aaa;}
+.listCon a:hover{color:#ff662f;}
+.listCon span{margin-right:20px;}
+.listCon li{padding-left:25px;}
+</style>
+</head>
+<body>
+ <div style="padding-top: 20px;">&nbsp;</div>
+<table width="1000" height="180" align="center">
+           <tr valign="top">
+             <th height="60" align="center" width="1%">&nbsp;</th>
+			   <th align="center" width="8%" valign="top">
+                   <input type="button"  value="文件上传" class="btn bc-blue" onclick="addNodeAnnex()" >
+               </th>
+               <th align="right" width="20%">
+                  文件列表：
+               </th>
+              <th align="left" width="40%" class="listCon" valign="top">
+					<ul id="attach_list">
+						    
+					</ul>
+             </th>
+</table>
+<div style="height:25px;width100%">
+ <iframe name='hidden_frame' id="hidden_frame" style='display: none'></iframe>
+</div>
+</body>
+</html>
+
+
