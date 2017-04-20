@@ -38,6 +38,7 @@ public class FileServlet extends HttpServlet{
 	public static int BUFFER_BYTE = 1024;
 	private static byte BYTES[] = new byte[BUFFER_BYTE];
 	private static final long MAX_SIZE = 1024 * 1024 * 1024;//1G
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -47,23 +48,24 @@ public class FileServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String actionName=request.getParameter("actionName");
-		if(null!=actionName&&"upload".equals(actionName)){
+		String actionName = request.getParameter("actionName");
+		if("upload".equals(actionName)){
 			uploadFile(request, response);
-		}else if(null!=actionName&&"remove".equals(actionName)){
+		}else if("remove".equals(actionName)){
 			removeAsynFile(request, response);
-		}else if(null!=actionName&&"download".equals(actionName)){
+		}else if("download".equals(actionName)){
 			downloadFile(request, response);
 		}
-	}
+	 }
+
 	/**上传附件
 	 * @throws IOException ***/ 
 	@SuppressWarnings("rawtypes")
 	private void uploadFile(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException  {
-		String actualDirePath=request.getParameter("actualDirePath");
+		String actualDirePath = request.getParameter("actualDirePath");
 		//设置返回的字符集为utf-8
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out=null;
+		PrintWriter out = null;
 		String fileStoragePath = request.getSession().getServletContext().getRealPath("/");
 		
 		 // 在解析请求之前先判断请求类型是否为文件上传类型  
@@ -80,7 +82,7 @@ public class FileServlet extends HttpServlet{
             items = upload.parseRequest(request);  
         } catch (FileUploadException e) { 
         	if (e instanceof SizeLimitExceededException){//超过最大文件限度
-        		out =response.getWriter();
+        		out = response.getWriter();
         		out.println("<script>parent.callbackfileupload('errorMaxsize')</script>");
         		out.flush();
         	  return;
@@ -98,7 +100,7 @@ public class FileServlet extends HttpServlet{
         	if(null==item||item.isFormField()){
         		continue;
         	}
-        	String fileName = (null==item.getName()?item.getString():item.getName());
+        	String fileName = (null == item.getName()?item.getString():item.getName());
         	//fileName=new String(fileName.getBytes("ISO-8859-1"), "utf-8");
         	long fileSize = item.getSize();
 			// 获取时间点
@@ -184,13 +186,13 @@ public class FileServlet extends HttpServlet{
 	private String downloadFile(HttpServletRequest request,HttpServletResponse response){
 		BufferedInputStream in = null;
 		BufferedOutputStream out = null;
-		OutputStream outputStream=null;
-		FileInputStream fileInput=null;
+		OutputStream outputStream = null;
+		FileInputStream fileInput = null;
 		String fileStoragePath = request.getSession().getServletContext().getRealPath("/");
 		try {
 			response.setContentType("text/html; charset=UTF-8");
-			String savePath=request.getParameter("path");
-			String fileName=request.getParameter("fileName");
+			String savePath = request.getParameter("path");
+			String fileName = request.getParameter("fileName");
 		    String downloadFilePath = fileStoragePath+savePath;
 			//读取文件
 			File downloadFile = new File(downloadFilePath);
@@ -238,11 +240,11 @@ public class FileServlet extends HttpServlet{
 			e.printStackTrace();
 		}finally{
 			try {
-				if(null!=fileInput)
+				if(null != fileInput)
 				  fileInput.close();
-				if(in!=null)
+				if(in != null)
 				  in.close();
-				if(null!=outputStream)
+				if(null != outputStream)
 				 outputStream.close();
 				if(null != out)
 				  out.close();
